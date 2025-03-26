@@ -14,11 +14,12 @@ public class HibernateCacheExample implements Serializable {
     @Table(name = "users")
     @Cacheable
     @org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
-    public static class User {
+    public static class User implements Serializable{
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY )
         private Long id;
         private String name;
+        private static final long serialVersionUID = 1L;
 
         public Long getId() {
             return id;
@@ -72,6 +73,7 @@ public class HibernateCacheExample implements Serializable {
             System.out.println("Второй запрос:");
             session.get(User.class, 1L); // Без SQL запроса
         }
+        sessionFactory.getCache().evictEntityData(User.class);
 
         // Демонстрация кэша 2 уровня
         System.out.println("\nКэш 2 уровня:");

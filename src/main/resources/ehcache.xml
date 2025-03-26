@@ -2,14 +2,15 @@
     <diskStore path="java.io.tmpdir"/>
 
     <defaultCache
-            maxElementsInMemory="10000"
+            maxEntriesLocalHeap="10000"
             eternal="false"
             timeToIdleSeconds="300"
             timeToLiveSeconds="600"/>
 
-    <cache name="com.example.HibernateCacheExample$User"
+    <cache name="HibernateCacheExample$User"
            maxEntriesLocalHeap="1000"
            eternal="true"
            timeToIdleSeconds="0"
            timeToLiveSeconds="0"/>
 </ehcache>
+
